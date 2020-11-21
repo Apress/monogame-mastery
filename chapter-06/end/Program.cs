@@ -2,7 +2,6 @@
 
 namespace chapter_06
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -18,5 +17,4 @@ namespace chapter_06
                 game.Run();
         }
     }
-#endif
 }

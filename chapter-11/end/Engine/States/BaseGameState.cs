@@ -74,7 +74,8 @@ namespace chapter_11.Engine.States
 
             foreach (var gameObject in _gameObjects)
             {
-                gameObject.OnNotify(gameEvent);
+                if (gameObject != null)
+                    gameObject.OnNotify(gameEvent);
             }
 
             _soundManager.OnNotify(gameEvent);
@@ -97,7 +98,7 @@ namespace chapter_11.Engine.States
 
         public virtual void Render(SpriteBatch spriteBatch)
         {
-            foreach (var gameObject in _gameObjects.OrderBy(a => a.zIndex))
+            foreach (var gameObject in _gameObjects.Where(a => a != null).OrderBy(a => a.zIndex))
             {
                 if (_debug)
                 {

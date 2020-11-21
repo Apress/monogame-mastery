@@ -28,12 +28,7 @@ namespace chapter_09.Engine
         public MainGame(int width, int height, BaseGameState firstGameState)
         {
             Content.RootDirectory = "Content";
-            graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = width,
-                PreferredBackBufferHeight = height,
-                IsFullScreen = false
-            };
+            graphics = new GraphicsDeviceManager(this);
 
             _firstGameState = firstGameState;
             _DesignedResolutionWidth = width;
@@ -49,6 +44,11 @@ namespace chapter_09.Engine
         /// </summary>
         protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = _DesignedResolutionWidth;
+            graphics.PreferredBackBufferHeight = _DesignedResolutionHeight;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+
             _renderTarget = new RenderTarget2D(graphics.GraphicsDevice, _DesignedResolutionWidth, _DesignedResolutionHeight, false,
                 SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
 

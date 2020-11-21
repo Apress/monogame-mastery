@@ -4,7 +4,6 @@ using System;
 
 namespace chapter_11
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -20,8 +19,11 @@ namespace chapter_11
         static void Main()
         {
             using (var game = new MainGame(WIDTH, HEIGHT, new SplashState()))
+            {
+                game.IsFixedTimeStep = true;
+                game.TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0f / 60);
                 game.Run();
+            }
         }
     }
-#endif
 }

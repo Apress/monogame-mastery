@@ -4,7 +4,6 @@ using System;
 
 namespace chapter_09
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -19,9 +18,8 @@ namespace chapter_09
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame(WIDTH, HEIGHT, new GameplayState()))
+            using (var game = new MainGame(WIDTH, HEIGHT, new SplashState()))
                 game.Run();
         }
     }
-#endif
 }

@@ -19,7 +19,7 @@ namespace chapter_08.Engine
         private RenderTarget2D _renderTarget;
         private Rectangle _renderScaleRectangle;
 
-        private int _DesignedResolutinWidth;
+        private int _DesignedResolutionWidth;
         private int _DesignedResolutionHeight;
         private float _designedResolutionAspectRatio;
 
@@ -28,15 +28,10 @@ namespace chapter_08.Engine
         public MainGame(int width, int height, BaseGameState firstGameState)
         {
             Content.RootDirectory = "Content";
-            graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = width,
-                PreferredBackBufferHeight = height,
-                IsFullScreen = false
-            };
+            graphics = new GraphicsDeviceManager(this);
 
             _firstGameState = firstGameState;
-            _DesignedResolutinWidth = width;
+            _DesignedResolutionWidth = width;
             _DesignedResolutionHeight = height;
             _designedResolutionAspectRatio = width / (float)height;
         }
@@ -49,7 +44,12 @@ namespace chapter_08.Engine
         /// </summary>
         protected override void Initialize()
         {
-            _renderTarget = new RenderTarget2D(graphics.GraphicsDevice, _DesignedResolutinWidth, _DesignedResolutionHeight, false,
+            graphics.PreferredBackBufferWidth = _DesignedResolutionWidth;
+            graphics.PreferredBackBufferHeight = _DesignedResolutionHeight;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+
+            _renderTarget = new RenderTarget2D(graphics.GraphicsDevice, _DesignedResolutionWidth, _DesignedResolutionHeight, false,
                 SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
 
             _renderScaleRectangle = GetScaleRectangle();

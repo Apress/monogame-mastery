@@ -2,7 +2,6 @@
 
 namespace Chapter3
 {
-#if WINDOWS || LINUX
     public static class Program
     {
         [STAThread]
@@ -12,5 +11,4 @@ namespace Chapter3
                 game.Run();
         }
     }
-#endif
 }

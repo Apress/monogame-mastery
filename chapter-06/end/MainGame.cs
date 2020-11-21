@@ -27,13 +27,7 @@ namespace chapter_06
 
         public MainGame()
         {
-            graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = DESIGNED_RESOLUTION_WIDTH,
-                PreferredBackBufferHeight = DESIGNED_RESOLUTION_HEIGHT,
-                IsFullScreen = false
-            };
-
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -45,10 +39,16 @@ namespace chapter_06
         /// </summary>
         protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = DESIGNED_RESOLUTION_WIDTH;
+            graphics.PreferredBackBufferHeight = DESIGNED_RESOLUTION_HEIGHT;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+
             _renderTarget = new RenderTarget2D(graphics.GraphicsDevice, DESIGNED_RESOLUTION_WIDTH, DESIGNED_RESOLUTION_HEIGHT, false,
                 SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
 
             _renderScaleRectangle = GetScaleRectangle();
+
 
             base.Initialize();
         }
@@ -156,6 +156,7 @@ namespace chapter_06
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            graphics.ApplyChanges();
             // Render to the Render Target
             GraphicsDevice.SetRenderTarget(_renderTarget);
 

@@ -4,7 +4,6 @@ using System;
 
 namespace chapter_08
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -23,5 +22,4 @@ namespace chapter_08
                 game.Run();
         }
     }
-#endif
 }

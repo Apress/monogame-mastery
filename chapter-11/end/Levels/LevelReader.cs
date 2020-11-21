@@ -22,7 +22,7 @@ namespace chapter_11.Levels
         public List<List<BaseGameStateEvent>> LoadLevel(int nb)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var assemblyName = assembly.FullName.Split(',')[0].Replace('-', '_');
+            var assemblyName = assembly.FullName.Split(',')[0];
             var fileName = $"{assemblyName}.Levels.LevelData.Level{nb}.txt";
 
             var stream = assembly.GetManifestResourceStream(fileName);
